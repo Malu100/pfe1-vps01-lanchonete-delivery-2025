@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedidos Finalizados</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: var(--cor5);
+      margin: 0;
+    }
+
+    header {
+      width: 100%;
+      max-width: 900px;
+      background-color: var(--cor1);
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    header button {
+      background-color: var(--cor2);
+      border: none;
+      padding: 0.4rem 0.8rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    section {
+      width: 100%;
+      max-width: 900px;
+      padding: 1rem;
+    }
+
+    .tabela-wrapper {
+      width: 100%;
+      max-width: 900px;
+      background-color: white;
+      border-radius: 8px;
+      overflow-x: auto;
+      padding: 0;
+      margin: 0 auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    th, td {
+      padding: 0.8rem;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    thead {
+      background-color: var(--cor2);
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: #f9f9f9;
+    }
+
+    @media (max-width: 600px) {
+      table {
+        font-size: 0.85rem;
+        min-width: 100%;
+      }
+
+      th, td {
+        padding: 0.6rem;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      header h1 {
+        margin-bottom: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pedidos Finalizados</h1>
+    <a href="index.html"><button>Voltar</button></a>
+  </header>
+
+  <section>
+    <p>Veja todos os pedidos finalizados:</p>
+  </section>
+
+  <div class="tabela-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Endereço</th>
+          <th>Produto</th>
+          <th>Preço</th>
+          <th>Data/Hora</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaFinalizados">
+        <!-- JS vai preencher -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const tabela = document.getElementById("tabelaFinalizados");
+    const pedidos = JSON.parse(localStorage.getItem("pedidosFinalizados")) || [];
+
+    pedidos.forEach(pedido => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${pedido.cliente}</td>
+        <td>${pedido.endereco}</td>
+        <td>${pedido.produto}</td>
+        <td>R$ ${pedido.preco.toFixed(2)}</td>
+        <td>${pedido.data}</td>
+      `;
+      tabela.appendChild(tr);
+    });
+  </script>
+</body>
+</html>

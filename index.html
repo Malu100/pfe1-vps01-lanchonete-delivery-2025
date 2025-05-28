@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lanchonete Delivery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Lanchonete Delivery</h1>
+    <button id="btnFinalizados">Concluídos</button>
+  </header>
+
+  <section class="formulario">
+    <input type="text" id="cliente" placeholder="Nome do cliente" required />
+    <input type="text" id="endereco" placeholder="Endereço de entrega" required />
+    <select id="produto"></select>
+    <button id="btnAdicionar">Gerar Pedido</button>
+    <p id="dataHora"></p>
+  </section>
+
+  <main>
+    <div class="coluna">
+      <h2>Em execução</h2>
+      <div id="listaExecucao"></div>
+    </div>
+    <div class="coluna">
+      <h2>A caminho</h2>
+      <div id="listaEntrega"></div>
+    </div>
+  </main>
+
+  <script src="dados.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
